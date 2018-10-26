@@ -122,6 +122,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group row rtl">
+                                <div class="col-sm-12 rtl align_right mb-2">
+                                    اضافه کردن پیوست :
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="file"
+                                           id="attachments"
+                                           class="filepond"
+                                           name="attachments[]"
+                                           multiple
+                                           data-max-file-size="5MB"
+                                           data-max-files="5"/>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <button class="btn btn-outline-primary btn-block">
                                     ثبت نظرسنجی
@@ -136,6 +150,8 @@
 @endsection
 
 @section('scripts')
+    {{--<script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>--}}
+    <script src="{{ asset('js/filepond.js') }}"></script>
     <script>
         $(document).ready(function () {
             $(".tooltips").tooltip();
@@ -147,6 +163,19 @@
 
             var input = document.querySelector('#options');
             let tagify = new Tagify(input, {});
+            FilePond.registerPlugin(
+                FilePondPluginFileValidateSize
+            );
+            FilePond.create(
+                document.querySelector('#attachments'),
+                {
+                    labelIdle: `فایل های خود را بکشید و اینجا رها کنید یا <span class="filepond--label-action">انتخاب کنید</span>`,
+                    allowFileSizeValidation: true,
+                    maxFileSize: '10MB',
+                    labelMaxFileSizeExceeded: 'سایز فایل خیلی بزرگ است',
+                    labelMaxFileSize: 'حداکثر سایز قابل قبول 10 مگابایت است'
+                }
+            );
         });
     </script>
 @endsection

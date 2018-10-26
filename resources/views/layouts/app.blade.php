@@ -9,15 +9,11 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/tagify.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/filepond.css') }}">
 </head>
 <body>
 <div id="app">
@@ -83,5 +79,6 @@
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/tagify.js') }}"></script>
+
 @yield('scripts')
 </html>
